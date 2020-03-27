@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}貸出ページ{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+    <h2>備品id {{equipment.pk}} {{equipment.name}}  貸出画面</h2>
+   
+    <div class="text-danger">
+        {{form.non_field_errors}}
+    </div>
+
+    <form method="POST">{% csrf_token %}
+        {% bootstrap_form form %}
+        <button type='submit' class="btn btn-primary">貸出</button>
+    </form>    
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}備品検索ページ{% endblock %}
+{% block content %}
+
+<div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>備品ID</th>
+                    <th>名前</th>
+                    <th>カテゴリー</th>
+                    <th>購入費用</th>
+                    <th>在庫</th>
+                    <th>所持者</th>
+                    <th>返却日</th>
+                    <th>詳細</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for equip in equip_list %}
+                <tr>
+                    <td>{{ equip.id }}</td>
+                    <td>{{ equip.name }}</td>
+                    <td>{{ equip.category }}</td>
+                    <td>{{ equip.price }} 円</td>
+                    {% if equip.belong_to %}
+                    <td>貸出中</td>
+                    {% else %}
+                    <td>在庫あり</td>
+                    {% endif %}
+                    <td>{{ equip.belong_to }}</td>
+                    <td>{{ equip.return_date }} </td>
+                    <td><a class="btn btn-success" href="{% url 'register:equip_update' equip.pk %}" >詳細</a></td>  
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}スタッフページ{% endblock %}
+
+{% block content %}
+
+<div class='container my-3'>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">登録</h4>
+                    <!-- <p class="card-text">備品登録画面に移動します</p> -->
+                    <a href="{% url 'register:equip_add' %} " class="btn btn-primary">備品登録画面に移動</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">検索</h4>
+                    <!-- <p class="card-text">備品検索画面に移動します</p> -->
+                    <a href="{% url 'staff:equip_list' %} " class="btn btn-primary">備品検索画面に移動</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='container my-5'>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">返却</h4>
+                    <!-- <p class="card-text">備品登録画面に移動します</p> -->
+                    <a href="{% url 'staff:return_eq' 0 %}" class="btn btn-primary">備品返却画面に移動</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">スタッフ追加</h4>
+                    <!-- <p class="card-text">Some example text. Some example text.</p> -->
+                    <a href="#" class="btn btn-primary">スタッフ追加画面に移動</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h4>スタッフへのお知らせ</h4>
+</div>
+
+{% endblock %}

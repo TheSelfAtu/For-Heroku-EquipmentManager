@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}スタッフ追加ページ{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+
+  <div class="text-danger">
+    {{form.non_field_errors}}
+  </div>
+
+  <form method="POST">{% csrf_token %}
+    {% bootstrap_form form %}
+    
+    <button type='submit' >ログイン</button>
+  </form>
+</div>
+
+{% endblock %}

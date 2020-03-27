@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}備品追加ページ{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+    <h2>備品id {{equipment.pk}} {{equipment.name}} 編集画面</h2>
+    
+    {% if not equipment.belong_to %}
+    <a href="{% url 'staff:loan' equipment.pk %}" 　type='button' class='btn btn-success my-2'>貸出画面に移動</a>
+    {% else %}
+    <a href="{% url 'staff:return_eq' equipment.pk %}" 　type='button' class='btn btn-success my-2'>返却画面に移動</a>
+
+    {% endif %}
+
+    
+    <div class="text-danger">
+        {{form.non_field_errors}}
+    </div>
+
+    <form method="POST">{% csrf_token %}
+        {% bootstrap_form form %}
+
+        <button type='submit' class="btn btn-primary">適用</button>
+    </form>
+</div>
+
+{% endblock %}
