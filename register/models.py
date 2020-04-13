@@ -133,34 +133,3 @@ class Equipment(models.Model):
     def return_day_comming(self):
         return timezone.now() <= self.return_date - datetime.timedelta(days=7)            
 
-class Equipment(models.Model):
-    # 備品名称
-    name = models.CharField(verbose_name='備品名称', max_length=20, default='')
-    # 備品カテゴリー
-    EQIPMENT_CHOICES = [
-        ("PC", 'PC'),
-        ("カメラ", 'カメラ'),
-        ("プロジェクター", 'プロジェクター'),
-        ("その他", 'その他'),
-    ]
-    category = models.CharField(
-        verbose_name='カテゴリー',
-        max_length=5,
-        choices=EQIPMENT_CHOICES,
-        default="PC",
-    )    
-    # 購入費用
-    price = models.IntegerField(verbose_name='購入費用', default=0)
-    # 貸出中
-    loaned_out = models.BooleanField(
-        default=False,
-        help_text=_(
-            'if True, being loaned out'),
-    )
-    # 現在の所持者
-    belong_to = models.ForeignKey(User, verbose_name='所持者', on_delete=models.PROTECT, null=True)
-    # 返却日
-    return_date = models.DateTimeField('return deadline', blank=True, null=True,)
-    # 概要
-    comment = models.TextField(verbose_name='概要', null=True, blank=True)
-
