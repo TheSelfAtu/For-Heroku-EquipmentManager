@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}ユーザー情報編集{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+    <h2>ユーザーid {{user.pk}} {{user.first_name}} {{user.last_name}} 編集画面</h2>
+    <p>＊ユーザーのパスワードはこの画面では変更出来ません</p>
+
+    <div class="text-danger">
+        {{form.non_field_errors}}
+    </div>
+
+    <form method="POST">{% csrf_token %}
+        {% bootstrap_form form %}
+        <!-- モーダルボタン -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            変更する
+        </button>
+
+        <!-- モーダル -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">確認</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        ユーザー登録の情報を変更しますか？
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type='submit' class="btn btn-primary">変更</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

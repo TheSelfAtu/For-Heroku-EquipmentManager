@@ -8,10 +8,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 
  
-
-class EqDetail(DetailView):
-    template_name = 'register/eq_detail.html'
+class EqAdd(CreateView):
+    template_name = 'register/equip_add.html'
     model = Equipment
+    fields = ['name', 'category',  'price', 'comment']
+
+    def get_success_url(self):
+        return reverse('register:equip_add')
+
 
 class EqUpdate(UpdateView):
     template_name = 'register/equip_update.html'
@@ -22,15 +26,14 @@ class EqUpdate(UpdateView):
  
         return reverse('staff:equip_list')
 
-class EqAdd(CreateView):
-    template_name = 'register/equip_add.html'
+
+class EqDetail(DetailView):
+    template_name = 'register/eq_detail.html'
     model = Equipment
-    fields = ['name', 'category',  'price', 'comment']
 
-    def get_success_url(self):
-        return reverse('register:equip_add')
 
-def SfAdd(request):
+
+def UserAdd(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -42,4 +45,13 @@ def SfAdd(request):
             return redirect("staff:staff_page")
     else:
         form = UserCreationForm()
-    return render(request, 'register/staff_add.html', {"form":form})
+    return render(request, 'register/user_add.html', {"form":form})
+
+class UserUpdate(UpdateView):
+    template_name = 'register/user_update.html'
+    model = User
+    fields = ['first_name', 'last_name',  'email', 'department', ]
+
+    def get_success_url(self):
+ 
+        return reverse('staff:user_list')

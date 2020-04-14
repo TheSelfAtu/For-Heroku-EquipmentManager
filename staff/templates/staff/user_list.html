@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}ユーザーリスト{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group">
+                <label for="search_num">ユーザーID</label>
+                <input type="text" class="form-control" id="search_num">
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="search_name">名前</label>
+                <input type="text" class="form-control" id="search_name">
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="search_email">Eメール</label>
+                <input type="text" class="form-control" id="search_email">
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="search_department">部署</label>
+                <select class="form-control" id="search_department">
+                    <option></option>
+                    <option>営業</option>
+                    <option>経理</option>
+                    <option>人事</option>
+                    <option>IT</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <input type="button" value="絞り込む" id="button">
+    <input type="button" value="すべて表示" id="button2">
+</div>
+<div class="container">
+    <table id='result' class="table table-striped">
+        <thead>
+            <tr>
+                <th>ユーザーID</th>
+                <th>名前</th>
+                <th>Eメール</th>
+                <th>部署</th>
+                <th>詳細</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user_list %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.first_name }} {{user.last_name}}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.department }} </td>
+                <td><a class="btn btn-success" href="{% url 'register:user_update' user.pk %}">詳細</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+<!-- ｊｓファイル読み込み -->
+{% block extra_js %}
+<script src="{% static 'staff/user_list.js'%} "></script>
+{% endblock%}

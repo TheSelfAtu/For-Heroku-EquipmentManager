@@ -7,5 +7,6 @@ urlpatterns = [
     path('equip_list', views.EquipListView.as_view(), name='equip_list'),
     path('loan/<int:pk>/', views.loan, name='loan'),
     path('return_eq/<int:pk>/', views.return_eq, name='return_eq'),
-    
+    path('user_list', views.UserListView.as_view(), name='user_list'),
+
 ]

@@ -57,3 +57,13 @@ def return_eq(request, pk):
         'form':LoanForm(),
     }
     return render(request, 'staff/return_eq.html', context)
+
+
+
+class UserListView(generic.TemplateView):
+    template_name = 'staff/user_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_list'] = User.objects.all()
+        return context

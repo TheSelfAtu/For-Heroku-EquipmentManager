@@ -6,38 +6,77 @@
 {% block content %}
 
 <div class="container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>備品ID</th>
-                    <th>名前</th>
-                    <th>カテゴリー</th>
-                    <th>購入費用</th>
-                    <th>在庫</th>
-                    <th>所持者</th>
-                    <th>返却予定日</th>
-                    <th>詳細</th>
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group">
+                <label for="search_num">備品ID</label>
+                <input type="text" class="form-control" id="search_num">
+            </div>
+        </div>
+        <dif class="col-md">
+            <div class="form-group">
+                <label for="search_category">カテゴリー:</label>
+                <select class="form-control" id="search_category">
+                    <option></option>
+                    <option>PC</option>
+                    <option>カメラ</option>
+                    <option>プロジェクター</option>
+                    <option>その他</option>
+                </select>
+            </div>
+        </dif>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="search_category">在庫</label>
+                <select class="form-control" id="search_loaned">
+                    <option></option>
+                    <option></option>
+                    <option>あり</option>
+                    <option>貸出中</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <input type="button" value="絞り込む" id="button">
+    <input type="button" value="すべて表示" id="button2">
 
-                </tr>
-            </thead>
-            <tbody>
-                {% for equip in equip_list %}
-                <tr>
-                    <td>{{ equip.id }}</td>
-                    <td>{{ equip.name }}</td>
-                    <td>{{ equip.category }}</td>
-                    <td>{{ equip.price }} 円</td>
-                    {% if equip.belong_to %}
-                    <td>貸出中</td>
-                    {% else %}
-                    <td>あり</td>
-                    {% endif %}
-                    <td>{{ equip.belong_to }}</td>
-                    <td>{{ equip.return_date }} </td>
-                    <td><a class="btn btn-success" href="{% url 'register:equip_update' equip.pk %}" >詳細</a></td>  
+    <table id='result' class="table table-striped">
+        <thead>
+            <tr>
+                <th>備品ID</th>
+                <th>名前</th>
+                <th>カテゴリー</th>
+                <th>購入費用</th>
+                <th>在庫</th>
+                <th>所持者</th>
+                <th>返却予定日</th>
+                <th>詳細</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equip in equip_list %}
+            <tr>
+                <td>{{ equip.id }}</td>
+                <td>{{ equip.name }}</td>
+                <td>{{ equip.category }}</td>
+                <td>{{ equip.price }} 円</td>
+                {% if equip.belong_to %}
+                <td>貸出中</td>
+                {% else %}
+                <td>あり</td>
+                {% endif %}
+                <td>{{ equip.belong_to }}</td>
+                <td>{{ equip.return_date }} </td>
+                <td><a class="btn btn-success" href="{% url 'register:equip_update' equip.pk %}">詳細</a></td>
             </tr>
             {% endfor %}
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </div>
+
 {% endblock %}
+
+<!-- ｊｓファイル読み込み -->
+{% block extra_js %}
+<script src="{% static 'staff/equip_list.js'%} "></script>
+{% endblock%}
