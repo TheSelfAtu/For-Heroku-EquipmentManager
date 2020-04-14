@@ -8,7 +8,7 @@
 
 <div class='container'>
     <h2>備品id {{equipment.pk}} {{equipment.name}} 編集画面</h2>
-    
+
     {% if not equipment.belong_to %}
     <a href="{% url 'staff:loan' equipment.pk %}" 　type='button' class='btn btn-success my-2'>貸出画面に移動</a>
     {% else %}
@@ -16,15 +16,44 @@
 
     {% endif %}
 
-    
+
     <div class="text-danger">
         {{form.non_field_errors}}
     </div>
 
     <form method="POST">{% csrf_token %}
         {% bootstrap_form form %}
+        <!-- モーダルボタン -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            適用
+        </button>
 
-        <button type='submit' class="btn btn-primary">適用</button>
+        <!-- モーダル -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">確認</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        備品登録の情報を変更しますか？
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type='submit' class="btn btn-primary">変更</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 

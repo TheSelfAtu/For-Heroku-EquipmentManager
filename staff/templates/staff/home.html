@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">登録</h4>
-                    <!-- <p class="card-text">備品登録画面に移動します</p> -->
+                    <p class="card-text">新しい備品の登録</p>
                     <a href="{% url 'register:equip_add' %} " class="btn btn-primary">備品登録画面に移動</a>
                 </div>
             </div>
@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">検索</h4>
-                    <!-- <p class="card-text">備品検索画面に移動します</p> -->
+                    <p class="card-text">備品情報の検索・編集・返却手続き</p>
                     <a href="{% url 'staff:equip_list' %} " class="btn btn-primary">備品検索画面に移動</a>
                 </div>
             </div>
@@ -34,18 +34,18 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">返却</h4>
-                    <!-- <p class="card-text">備品登録画面に移動します</p> -->
-                    <a href="{% url 'staff:return_eq' 0 %}" class="btn btn-primary">備品返却画面に移動</a>
+                    <h4 class="card-title">ユーザー追加</h4>
+                    <p class="card-text">ユーザーとスタッフの追加</p>
+                    <a href="{% url 'register:staff_add'  %}" class="btn btn-primary">ユーザ-追加画面に移動</a>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">スタッフ追加</h4>
-                    <!-- <p class="card-text">Some example text. Some example text.</p> -->
-                    <a href="#" class="btn btn-primary">スタッフ追加画面に移動</a>
+                    <h4 class="card-title">ユーザー情報</h4>
+                    <p class="card-text">ユーザ情報の確認・編集</p>
+                    <a href="{% url 'staff:return_eq' 0 %}" class="btn btn-primary">備品返却画面に移動</a>
                 </div>
             </div>
         </div>

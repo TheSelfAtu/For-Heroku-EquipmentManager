@@ -49,6 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ("IT", 'IT部'),
     ]
     department = models.CharField(
+        _('部署'),
         max_length=5,
         choices=DEPARTMENT_CHOICES,
         default="営業部",
