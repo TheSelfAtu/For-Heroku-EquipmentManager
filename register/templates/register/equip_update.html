@@ -12,7 +12,7 @@
     {% if not equipment.belong_to %}
     <a href="{% url 'staff:loan' equipment.pk %}" 　type='button' class='btn btn-success my-2'>貸出画面に移動</a>
     {% else %}
-    <a href="{% url 'staff:return_eq' equipment.pk %}" 　type='button' class='btn btn-success my-2'>返却画面に移動</a>
+    <a href="{% url 'staff:return_eq' equipment.pk %}" 　type='button' class='btn btn-success my-2'>返却</a>
 
     {% endif %}
 
