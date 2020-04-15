@@ -57,4 +57,41 @@
     </form>
 </div>
 
+<div class="container d-flex justify-content-center">
+    <form method="POST">{% csrf_token %}
+        <!-- モーダルボタン -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa2">
+            この備品を削除
+        </button>
+
+        <!-- モーダル -->
+        <div class="modal" id="myModa2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">確認</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        備品情報を削除しますか？
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <!-- <a class="btn btn-success" href="{% url 'register:user_update' user.pk %}"></a> -->
+                        <a class="btn btn-danger" href="{% url 'register:equip_delete' equipment.pk %} ">削除する</a>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 {% endblock %}
