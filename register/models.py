@@ -108,7 +108,7 @@ class Equipment(models.Model):
     ]
     category = models.CharField(
         verbose_name='カテゴリー',
-        max_length=5,
+        max_length=20,
         choices=EQIPMENT_CHOICES,
         default="PC",
     )    
@@ -134,3 +134,24 @@ class Equipment(models.Model):
     def return_day_comming(self):
         return timezone.now() <= self.return_date - datetime.timedelta(days=7)            
 
+class Loan_log(models.Model):
+    # 備品
+    equipment = models.ForeignKey(Equipment, verbose_name='備品', on_delete=models.PROTECT, null=True)
+    # 所有者
+    belong_to = models.ForeignKey(User, verbose_name='所持者', on_delete=models.PROTECT, null=True)
+    # 貸出日
+    loan_date = models.DateTimeField('start loan date', blank=True, null=True,)
+    
+    def __str__(self):
+        return 'pk ' + str(self.pk) + self.equipment.name + str(self.loan_date) 
+
+class Return_log(models.Model):
+    # 備品
+    equipment = models.ForeignKey(Equipment, verbose_name='備品', on_delete=models.PROTECT, null=True)
+    # 所有者
+    belong_to = models.ForeignKey(User, verbose_name='所持者', on_delete=models.PROTECT, null=True)
+    # 返却日
+    return_date = models.DateTimeField('return date', blank=True, null=True,)
+    
+    def __str__(self):
+        return  'pk ' + str(self.pk) + self.equipment.name + str(self.return_date)
