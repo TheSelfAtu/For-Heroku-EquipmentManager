@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}スタッフページ{% endblock %}
+
+{% block content %}
+
+<div class='container my-3'>
+    <div class="row">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">ユーザー情報変更</h4>
+                    <p class="card-text">パスワードの変更は出来ません</p>
+                    <a href="{% url 'register:user_update' request.user.pk %} " class="btn btn-primary">備品登録画面に移動</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">備品検索</h4>
+                    <p class="card-text">備品情報の検索</p>
+                    <a href="{% url 'user:equip_list' %} " class="btn btn-primary">備品検索画面に移動</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

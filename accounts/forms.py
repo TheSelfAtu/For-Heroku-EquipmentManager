@@ -1,6 +1,6 @@
-from django.contrib.auth import forms as auth_forms
+from django.contrib.auth import forms 
 
-class LoginForm(auth_forms.AuthenticationForm):
+class LoginForm(forms.AuthenticationForm):
     '''ログインフォーム'''
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)

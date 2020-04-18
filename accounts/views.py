@@ -1,15 +1,17 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from . import forms
+from django.views.generic.edit import CreateView
+from .forms import LoginForm
 
 class MyLoginView(LoginView):
-    form_class = forms.LoginForm
+    form_class = LoginForm
     template_name = "accounts/login.html"
 
 class MyLogoutView(LogoutView):
     template_name = "accounts/logout.html"
 
 class RedirectView(TemplateView):
-    template_name = 'staff/home.html'
+    template_name = 'user/home.html'
+
+
