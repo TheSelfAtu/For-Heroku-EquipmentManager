@@ -2,13 +2,12 @@
 {% load bootstrap4 %}
 {% load static %}
 
-{% block title %}ユーザー追加ページ{% endblock %}
+{% block title %}サインアップページ{% endblock %}
 
 {% block content %}
 
 <div class='container'>
-<h4 class="mb-3">ユーザー追加画面</h4>
-<p>スタッフを追加する場合はスタッフ権限にチェックをいれてください</p>
+<h4 class="mb-3">サインアップ画面</h4>
   <div class="text-danger">
     {{form.non_field_errors}}
   </div>
@@ -16,7 +15,7 @@
   <form method="POST">{% csrf_token %}
     {% bootstrap_form form %}
     
-    <button type='submit' class="btn-success" >ユーザーを追加する</button>
+    <button type='submit' class="btn-success" >ユーザー登録する</button>
   </form>
 </div>
 

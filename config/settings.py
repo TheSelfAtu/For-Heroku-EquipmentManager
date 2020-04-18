@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'accounts.middleware.LoginRequire.LoginRequiredMiddleware',
-
+    'accounts.middleware.LoginRequire.StaffRequiredMiddleware', 
 ]
 
 ROOT_URLCONF = 'config.urls'
