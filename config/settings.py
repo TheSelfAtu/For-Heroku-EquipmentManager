@@ -27,7 +27,10 @@ SECRET_KEY = 'npe^$o5$$v$paf8p(b-8_)-u#q&q))b(udwxd12!vwl7g#1iw1'
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
 # Application definition
 
@@ -86,11 +89,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'name',
+        'USER': 'user',
+        'PASSWORD': '',
+        'HOST': 'host',
+        'PORT': '',
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -130,17 +139,12 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-
-try:　　　　　　　　　　　　　　　　　　
-    from .local_settings import *
-except ImportError:
-    pass
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
+    SECRET_KEY = os.environ['SECRET_KEY']
+    import django_heroku #追加
+    django_heroku.settings(locals()) #追加
 
 #  ログイン画面
 LOGIN_URL = 'accounts:login'
