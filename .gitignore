@@ -9,6 +9,6 @@ db.sqlite3
 *.mp4
 static
 local_settings.py
+locla_settings
 .gitignore
-local_settings.py
-local_settings.py
+
